@@ -1,12 +1,9 @@
-FROM centos
-
+FROM python:3
 MAINTAINER Jagadish.Manchala <Jagadish.Manchala>
-
-RUN rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm \
-      && yum update -y \
-      && yum install -y python-pip \
-      && pip install flask
-
 COPY . /src
+WORKDIR /src
+RUN pip install Flask
 EXPOSE 5000
-CMD cd /src && python home.py
+ENTRYPOINT [ "python" ]
+
+CMD [ "home.py" ]
